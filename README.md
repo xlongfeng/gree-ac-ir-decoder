@@ -90,7 +90,6 @@ Bit encoding (NRZ, active-low demodulated signal):
 | [4]  | [6:4]  | SwingH          | see swing constants below |
 | [5]  | [1:0]  | DisplayTemp     | 0=OFF 1=Set-point 2=Indoor 3=Outdoor |
 | [5]  | [2]    | IFeel           | 1=ON |
-| [5]  | [5:3]  | **fixed = 0x4** | always 0b100 |
 | [5]  | [6]    | WiFi            | 1=ON |
 | [6]  | —      | reserved        | 0x00 |
 | [7]  | [1:0]  | reserved        | 0 |
@@ -114,6 +113,7 @@ Bit encoding (NRZ, active-low demodulated signal):
 | [5]  | —      | Sleep3 related      | 0x00 |
 | [6]  | [3:0]  | Sleep3              | |
 | [6]  | [6:4]  | Fan                 | 0=AUTO 1=Lvl1(Quiet) 2=Lvl2 3=Lvl3 4=Lvl4 5=Lvl5(Turbo) — coexists with BasicFan |
+| [6]  | [7]    | **always 1**        | MSB must always be set |
 | [7]  | [2:0]  | reserved            | 0 |
 | [7]  | [3]    | CoolingSensation    | 1=ON |
 | [7]  | [7:4]  | **Checksum**        | see below |
@@ -194,7 +194,7 @@ f1[3]  = 0x50;                      // bits[7:4]  fixed = 0x5 (frame-1 id)
 f1[4]  = GREE_SWING_V_AUTO;         // bits[3:0]  SwingV
 // f1[4] |= (GREE_SWING_H_AUTO << 4); // bits[6:4]  SwingH (optional)
 
-f1[5]  = (0x4 << 3);                // bits[5:3]  fixed = 0x4
+f2[6]  |= (1 << 7);                 // bit[7]     always 1
 
 // Apply checksum
 f1[7]  = (gree_checksum(f1) << 4);
