@@ -1,0 +1,11 @@
+menu "IR Decoder Configuration"
+
+    config IR_RX_GPIO
+        int "IR receiver GPIO number"
+        range 0 48
+        default 4
+        help
+            GPIO number connected to the data output of the IR receiver module
+            (e.g. TSOP38238 or similar).
+
+endmenu
