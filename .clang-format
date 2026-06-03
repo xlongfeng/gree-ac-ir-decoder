@@ -1,0 +1,15 @@
+---
+BasedOnStyle: LLVM
+Language: Cpp
+UseTab: Never
+IndentWidth: 4
+TabWidth: 4
+ColumnLimit: 120
+AlignAfterOpenBracket: Align
+BreakBeforeBraces: Custom
+BraceWrapping:
+    AfterFunction: true
+    AfterStruct: false
+    AfterEnum: false
+IndentAccessModifiers: false
+AccessModifierOffset: -4
